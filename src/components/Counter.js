@@ -18,6 +18,7 @@ The other things can simply be _derived_ from the count itself.
 STEP 0:
   Start by studying the component below, and importing the state hook.
 
+
 STEP 1:
   Using the state hook, create a 'count', 'setCount' pair.
   The 'count' state should be initialized to the number zero.
@@ -46,33 +47,38 @@ STEP 6:
   This click handler needs to use 'setCount' to set the 'count' to be zero again.
 */
 
-import React from "react"; /* STEP 0 */
+//import React from "react"; /* STEP 0 */
+import React, { useState } from "react";
 
 export default function Counter() {
   /* STEP 1 */
+  let [count, setCount] = useState(0);
+  let [isEven, setEven] = useState("even");
 
   const increment = () => {
     /* STEP 4 */
+    setCount(count + 1);
   };
   const decrement = () => {
     /* STEP 5 */
+    setCount(count - 1);
   };
   const reset = () => {
     /* STEP 6 */
+    setCount(count == "0");
   };
 
-  const style = {
+  const Blue = {
     fontSize: "1.5em",
     marginBottom: "0.3em",
-    color:
-      "royalblue" /* STEP 2 Cannot get npm to install so i am repairing python. */,
+    color: count % 2 == 1 ? "royalblue" : "crimson" /* STEP 2 */,
   };
 
   return (
     <div className="widget-counter container">
       <h2>Counter</h2>
-      <div id="count" style={style}>
-        Number 0 is even {/* STEP 3 */}
+      <div id="countEven" style={Blue}>
+        Number {count} is {isEven} {/* STEP 3 */}
       </div>
       <div>
         <button id="increment" onClick={increment}>
